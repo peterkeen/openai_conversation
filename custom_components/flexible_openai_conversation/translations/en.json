@@ -9,7 +9,7 @@
             "user": {
                 "data": {
                     "api_key": "API Key",
-                    "api_base": "API Base",
+                    "api_base": "API Base"
                 }
             }
         }
@@ -22,7 +22,7 @@
                     "model": "Completion Model",
                     "prompt": "Prompt Template",
                     "temperature": "Temperature",
-                    "top_p": "Top P",
+                    "top_p": "Top P"
                 }
             }
         }
