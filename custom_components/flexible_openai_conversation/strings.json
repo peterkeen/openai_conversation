@@ -3,7 +3,8 @@
     "step": {
       "user": {
         "data": {
-          "api_key": "[%key:common::config_flow::data::api_key%]"
+          "api_key": "[%key:common::config_flow::data::api_key%]",
+          "api_base": "API Base URL",
         }
       }
     },
@@ -25,7 +26,6 @@
           "llm_hass_api": "[%key:common::config_flow::data::llm_hass_api%]",
           "recommended": "Recommended model settings",
           "reasoning_effort": "Reasoning effort",
-          "api_base": "API Base URL",
         },
         "data_description": {
           "prompt": "Instruct how the LLM should respond. This can be a template.",

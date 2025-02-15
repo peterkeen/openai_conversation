@@ -53,6 +53,7 @@ _LOGGER = logging.getLogger(__name__)
 STEP_USER_DATA_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_API_KEY): str,
+        vol.Required(CONF_API_BASE, default=RECOMMENDED_API_BASE): str,
     }
 )
 
@@ -60,7 +61,6 @@ RECOMMENDED_OPTIONS = {
     CONF_RECOMMENDED: True,
     CONF_LLM_HASS_API: llm.LLM_API_ASSIST,
     CONF_PROMPT: llm.DEFAULT_INSTRUCTIONS_PROMPT,
-    CONF_API_BASE: RECOMMENDED_API_BASE,
 }
 
 
@@ -69,7 +69,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> None:
 
     Data has the keys from STEP_USER_DATA_SCHEMA with values provided by the user.
     """
-    client = openai.AsyncOpenAI(api_key=data[CONF_API_KEY])
+    client = openai.AsyncOpenAI(api_key=data[CONF_API_KEY], api_base=data[CONF_API_BASE])
     await hass.async_add_executor_job(client.with_options(timeout=10.0).models.list)
 
 
@@ -150,7 +150,6 @@ class OpenAIOptionsFlow(OptionsFlow):
                     CONF_RECOMMENDED: user_input[CONF_RECOMMENDED],
                     CONF_PROMPT: user_input[CONF_PROMPT],
                     CONF_LLM_HASS_API: user_input[CONF_LLM_HASS_API],
-                    CONF_API_BASE: user_input[CONF_API_BASE],
                 }
 
         schema = openai_config_option_schema(self.hass, options)
@@ -194,11 +193,6 @@ def openai_config_option_schema(
             description={"suggested_value": options.get(CONF_LLM_HASS_API)},
             default="none",
         ): SelectSelector(SelectSelectorConfig(options=hass_apis)),
-        vol.Optional(
-            CONF_API_BASE,
-            description={"suggested_value": options.get(CONF_API_BASE)},
-            default=RECOMMENDED_API_BASE,
-        ): str,
         vol.Required(
             CONF_RECOMMENDED, default=options.get(CONF_RECOMMENDED, False)
         ): bool,
@@ -240,11 +234,6 @@ def openai_config_option_schema(
                     mode=SelectSelectorMode.DROPDOWN,
                 )
             ),
-            vol.Optional(
-                CONF_API_BASE,
-                description={"suggested_value": options.get(CONF_API_BASE)},
-                default=RECOMMENDED_API_BASE,
-            ): str,
         }
     )
     return schema
