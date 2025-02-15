@@ -2,7 +2,7 @@
 
 import logging
 
-DOMAIN = "openai_conversation"
+DOMAIN = "flexible_openai_conversation"
 LOGGER = logging.getLogger(__package__)
 
 CONF_RECOMMENDED = "recommended"
