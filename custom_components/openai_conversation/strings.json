@@ -24,7 +24,8 @@
           "top_p": "Top P",
           "llm_hass_api": "[%key:common::config_flow::data::llm_hass_api%]",
           "recommended": "Recommended model settings",
-          "reasoning_effort": "Reasoning effort"
+          "reasoning_effort": "Reasoning effort",
+          "api_base": "API Base URL",
         },
         "data_description": {
           "prompt": "Instruct how the LLM should respond. This can be a template.",

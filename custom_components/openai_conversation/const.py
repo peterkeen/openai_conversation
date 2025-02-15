@@ -17,6 +17,8 @@ CONF_TEMPERATURE = "temperature"
 RECOMMENDED_TEMPERATURE = 1.0
 CONF_REASONING_EFFORT = "reasoning_effort"
 RECOMMENDED_REASONING_EFFORT = "low"
+CONF_API_BASE = "api_base"
+RECOMMENDED_API_BASE = "https://api.openai.com/v1/"
 
 UNSUPPORTED_MODELS = [
     "o1-mini",

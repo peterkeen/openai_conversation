@@ -30,6 +30,7 @@ from homeassistant.helpers.selector import (
 from homeassistant.helpers.typing import VolDictType
 
 from .const import (
+    CONF_API_BASE,
     CONF_CHAT_MODEL,
     CONF_MAX_TOKENS,
     CONF_PROMPT,
@@ -38,6 +39,7 @@ from .const import (
     CONF_TEMPERATURE,
     CONF_TOP_P,
     DOMAIN,
+    RECOMMENDED_API_BASE,
     RECOMMENDED_CHAT_MODEL,
     RECOMMENDED_MAX_TOKENS,
     RECOMMENDED_REASONING_EFFORT,
@@ -58,6 +60,7 @@ RECOMMENDED_OPTIONS = {
     CONF_RECOMMENDED: True,
     CONF_LLM_HASS_API: llm.LLM_API_ASSIST,
     CONF_PROMPT: llm.DEFAULT_INSTRUCTIONS_PROMPT,
+    CONF_API_BASE: RECOMMENDED_API_BASE,
 }
 
 
@@ -147,6 +150,7 @@ class OpenAIOptionsFlow(OptionsFlow):
                     CONF_RECOMMENDED: user_input[CONF_RECOMMENDED],
                     CONF_PROMPT: user_input[CONF_PROMPT],
                     CONF_LLM_HASS_API: user_input[CONF_LLM_HASS_API],
+                    CONF_API_BASE: user_input[CONF_API_BASE],
                 }
 
         schema = openai_config_option_schema(self.hass, options)
@@ -190,6 +194,11 @@ def openai_config_option_schema(
             description={"suggested_value": options.get(CONF_LLM_HASS_API)},
             default="none",
         ): SelectSelector(SelectSelectorConfig(options=hass_apis)),
+        vol.Optional(
+            CONF_API_BASE,
+            description={"suggested_value": options.get(CONF_API_BASE)},
+            default=RECOMMENDED_API_BASE,
+        ): str,
         vol.Required(
             CONF_RECOMMENDED, default=options.get(CONF_RECOMMENDED, False)
         ): bool,
@@ -231,6 +240,11 @@ def openai_config_option_schema(
                     mode=SelectSelectorMode.DROPDOWN,
                 )
             ),
+            vol.Optional(
+                CONF_API_BASE,
+                description={"suggested_value": options.get(CONF_API_BASE)},
+                default=RECOMMENDED_API_BASE,
+            ): str,
         }
     )
     return schema

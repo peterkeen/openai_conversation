@@ -21,7 +21,8 @@
                     "model": "Completion Model",
                     "prompt": "Prompt Template",
                     "temperature": "Temperature",
-                    "top_p": "Top P"
+                    "top_p": "Top P",
+                    "api_base": "API Base URL"
                 }
             }
         }
