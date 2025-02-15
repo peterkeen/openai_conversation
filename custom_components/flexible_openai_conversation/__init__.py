@@ -91,6 +91,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: OpenAIConfigEntry) -> bo
     """Set up OpenAI Conversation from a config entry."""
     client = openai.AsyncOpenAI(
         api_key=entry.data[CONF_API_KEY],
+        base_url=entry.data[CONF_BASE_URL],
         http_client=get_async_client(hass),
     )
 

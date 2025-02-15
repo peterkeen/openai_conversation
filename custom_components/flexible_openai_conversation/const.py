@@ -2,9 +2,11 @@
 
 import logging
 
-DOMAIN = "openai_conversation"
+DOMAIN = "flexible_openai_conversation"
 LOGGER = logging.getLogger(__package__)
 
+CONF_BASE_URL = "base_url"
+RECOMMENDED_BASE_URL = "https://api.openai.com/v1/"
 CONF_RECOMMENDED = "recommended"
 CONF_PROMPT = "prompt"
 CONF_CHAT_MODEL = "chat_model"
