@@ -1,8 +1,8 @@
 {
   "domain": "flexible_openai_conversation",
-  "name": "OpenAI Conversation",
+  "name": "Flexible OpenAI Conversation",
   "after_dependencies": ["assist_pipeline", "intent"],
-  "codeowners": ["@balloob"],
+  "codeowners": ["@peterkeen"],
   "config_flow": true,
   "dependencies": ["conversation"],
   "documentation": "https://www.home-assistant.io/integrations/openai_conversation",
